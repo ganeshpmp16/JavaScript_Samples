@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    
+    <title>Rest parameters</title>
+    
+</head>
+<body>
+    <h1>functions- rest paramenters</h1>
+    <button onclick="sum(10,12,30)">Calculate sum</button>
+    <script>
+        function sum(...numbers){
+
+           let s= numbers.reduce((total,n) => total +n,0);
+           alert("sum is : "+ s);
+        }
+    </script>
+    
+
+</body>
+</html>

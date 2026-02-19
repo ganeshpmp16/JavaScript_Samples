@@ -1,0 +1,58 @@
+<!--This file demonstrates conditional statements in JavaScript -->
+<!DOCTYPE html>
+<head>
+    <title>Conditional Statements Demo</title>  
+</head>
+<body>
+        <h1>Conditional Statements Demo</h1>
+        <p id="output"></p>
+        <script>
+            let age = 25;
+            // if statement
+            if(age >= 18){
+                console.log("You are an adult.");
+            }
+            // if-else statement
+            if(age >= 18){
+                console.log("You are an adult.");
+            } else {
+                console.log("You are a minor.");
+            }
+            // if-else if-else statement
+            if(age < 13){
+                console.log("You are a child.");
+            } else if(age >= 13 && age < 18){
+                console.log("You are a teenager.");
+            } else {
+                console.log("You are an adult.");
+            }
+            // switch statement
+            let day = "Monday";
+            switch(day){
+                case "Monday":
+                    console.log("Today is Monday.");
+                    break;
+                case "Tuesday":
+                    console.log("Today is Tuesday.");
+                    break;
+                case "Wednesday":
+                    console.log("Today is Wednesday.");
+                    break;
+                case "Thursday":
+                    console.log("Today is Thursday.");
+                    break;
+                case "Friday":
+                    console.log("Today is Friday.");
+                    break;
+                case "Saturday":
+                    console.log("Today is Saturday.");
+                    break;
+                case "Sunday":
+                    console.log("Today is Sunday.");
+                    break;
+                default:
+                    console.log("Invalid day.");
+            }
+        </script>
+    </body>
+</html>

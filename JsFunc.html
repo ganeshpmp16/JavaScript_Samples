@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <title>Functions Demo</title>
+    
+</head>
+<body>
+        <h1>function demo sample</h1>
+        <p id="output"></p>
+        <script>
+           /* function greet(name){
+                return 'Hello  ' + name;
+            }
+            //console.log(greet("John")) */
+           // const greet = (name) => `Hello ${name}`;
+           // console.log(greet("John"));
+           // functions is stored in a variable and can be passed as an argument to another function
+           let greet = function(name){
+                return `Hello ${name}`; //string interpolation
+            }
+            console.log(greet("John")); 
+            //functions can be passed as an argument to another function
+            function callGreet(greetFunction, name){
+                return greetFunction(name);
+            }
+            console.log(callGreet(greet, "Alice"));
+            // function passed as callback
+            setTimeout(function(){
+                console.log("This is a callback function");
+            }, 2000); 
+            function processUser(name, callback){
+                callback(name);
+            }
+            processUser("Bob", greet);
+            console.log(processUser("Bob", greet)); //undefined because processUser does not return anything    
+            // hoistiing with var
+            console.log(hoistedVar); //undefined
+            var hoistedVar = "I am hoisted";
+            console.log(hoistedVar); //I am hoisted
+            // hoisting with let and const
+            //console.log(hoistedLet); //ReferenceError: Cannot access 'hoistedLet' before initialization
+            let hoistedLet = "I am hoisted with let";
+            console.log(hoistedLet); //I am hoisted with let 
+            //console.log(hoistedConst); //ReferenceError: Cannot access 'hoistedConst' before initialization
+            const hoistedConst = "I am hoisted with const";
+            console.log(hoistedConst); //I am hoisted with const       
+            //hiosting with functions
+            console.log(hoistedFunction("Charlie")); //Hello Charlie
+            function hoistedFunction(name){
+                return `Hello ${name}`;
+            }
+            
+
+        </script>
+       <!-- <button onclick="document.getElementById('output').innerHTML=greet('Alice')">Greet</button> -->
+    </body>
+</html>

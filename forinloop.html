@@ -1,0 +1,25 @@
+<!--This file demonstrates the for...in loop in JavaScript      -->
+<!DOCTYPE html>
+<head>
+    <title>For...in Loop Demo</title>
+</head>
+<body>
+        <h1>For...in Loop Demo</h1>
+        <p id="output"></p>
+        <script>
+            let person = {
+                name: "Alice",
+                age: 30,
+                city: "New York"
+            };
+            // using for...in loop to iterate over the properties of the object
+            for(let key in person){
+                console.log(key + ": " + person[key]);
+            }
+            // using for...in loop to iterate over an array (not recommended)
+            let numbers = [10, 20, 30, 40, 50];
+            for(let index in numbers){
+                console.log(index + ": " + numbers[index]);
+            }
+        </script>
+    </body>

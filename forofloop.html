@@ -1,0 +1,30 @@
+<!--This file demonstrates the for...of loop in JavaScript  -->
+<!DOCTYPE html>
+<head>
+    <title>For...of Loop Demo</title>
+</head>
+<body>
+        <h1>For...of Loop Demo</h1>
+        <p id="output"></p>
+        <script>
+            let numbers = [10, 20, 30, 40, 50];
+            // using for...of loop to iterate over the array
+            for(let number of numbers){
+                console.log(number);
+            }
+            // using for...of loop to iterate over a string
+            let message = "Hello World";
+            for(let char of message){
+                console.log(char);
+            }
+            // using for...of loop with objects (iterating over values)
+            let person = {
+                name: "Alice",
+                age: 30,
+                city: "New York"
+            };
+            for(let value of Object.values(person)){
+                console.log(value);
+            }
+        </script>
+    </body>
