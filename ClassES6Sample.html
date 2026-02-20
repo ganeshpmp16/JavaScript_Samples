@@ -1,0 +1,40 @@
+<!--This file contains a JavaScript example demonstrating ES6 classes   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 Class Example</title>
+</head>
+<body>
+    <h1>ES6 Class Example</h1>
+    <p>Open the console to see the output of the ES6 class example.</p>
+
+    <script>
+        // Defining a class using ES6 syntax
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        }
+
+        // Creating an instance of the Person class
+        const person1 = new Person("Bob", 25);
+        const person2 = new Person("Alice", 30);
+
+        // Accessing properties and calling methods of the class instance
+        console.log("Name:", person1.name); // Output: Name: Bob
+        console.log("Age:", person1.age);   // Output: Age: 25
+        person1.greet(); // Output: Hello, my name is Bob and I am 25 years old.
+
+        console.log("Name:", person2.name); // Output: Name: Alice
+        console.log("Age:", person2.age);   // Output: Age: 30
+        person2.greet(); // Output: Hello, my name is Alice and I am 30 years old.
+    </script>
+</body>
+</html>

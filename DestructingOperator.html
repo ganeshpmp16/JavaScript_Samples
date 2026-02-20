@@ -1,0 +1,31 @@
+<!--This file contains a JavaScript example demonstrating destructuring operator in ES6 --> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destructuring Operator Example</title>
+</head>
+<body>
+    <h1>Destructuring Operator Example</h1>
+    <p>Open the console to see the output of the destructuring operator example.</p>
+
+    <script>
+        // Destructuring an array
+        const numbers = [1, 2, 3];
+        const [a, b, c] = numbers;
+        console.log("Array Destructuring:", a, b, c); // Output: Array Destructuring: 1 2 3
+
+        // Destructuring an object
+        const person = {
+            name: "Alice",
+            age: 30
+        };
+        const { name, age } = person;
+        console.log("Object Destructuring:", name, age); // Output: Object Destructuring: Alice 30
+        //destructuring with renaming
+        const { name: personName, age: personAge } = person;
+        console.log("Renamed Destructuring:", personName, personAge); // Output: Renamed Destructuring: Alice 30    
+    </script>
+</body>
+</html>

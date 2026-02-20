@@ -1,0 +1,35 @@
+<!--This file contains a JavaScript example demonstrating closures-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure Example</title>
+</head>
+<body>
+    <h1>Closure Example</h1>
+    <p>Open the console to see the output of the closure example.</p>
+
+    <script>
+        // Outer function that creates a closure
+        function outerFunction() {
+            let count = 0; // This variable is enclosed by the inner function
+
+            // Inner function that forms a closure
+            function innerFunction() {
+                count++; // Accessing and modifying the enclosed variable
+                console.log("Count:", count);
+            }
+
+            return innerFunction; // Returning the inner function to create a closure
+        }
+
+        const myClosure = outerFunction(); // myClosure now has access to the count variable
+
+        // Calling the closure multiple times to see how it retains access to the count variable
+        myClosure(); // Output: Count: 1
+        myClosure(); // Output: Count: 2
+        myClosure(); // Output: Count: 3
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!--This file contains a JavaScript example demonstrating the spread operator in ES6 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread Operator Example</title>
+</head>
+<body>
+    <h1>Spread Operator Example</h1>
+    <p>Open the console to see the output of the spread operator example.</p>
+
+    <script>
+        // Using spread operator to copy an array
+        const numbers = [1, 2, 3];
+        const copiedNumbers = [...numbers];
+        console.log("Copied Array:", copiedNumbers); // Output: Copied Array: [1, 2, 3]
+
+        // Using spread operator to merge arrays
+        const moreNumbers = [4, 5, 6];
+        const mergedNumbers = [...numbers, ...moreNumbers];
+        console.log("Merged Array:", mergedNumbers); // Output: Merged Array: [1, 2, 3, 4, 5, 6]
+
+        // Using spread operator to copy an object
+        const person = {
+            name: "Alice",
+            age: 30
+        };
+        const copiedPerson = { ...person };
+        console.log("Copied Object:", copiedPerson); // Output: Copied Object: { name: 'Alice', age: 30 }
+
+        // Using spread operator to merge objects
+        const additionalInfo = {
+            city: "New York",
+            profession: "Developer"
+        };
+        const mergedPerson = { ...person, ...additionalInfo };
+        console.log("Merged Object:", mergedPerson); 
+        // Output: Merged Object: { name: 'Alice', age: 30, city: 'New York', profession: 'Developer' }
+    </script>
+</body>
+</html>

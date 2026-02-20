@@ -1,0 +1,37 @@
+<!--This file contains a JavaScript example demonstrating event handling and delegation in HTML  -->    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling and Delegation Example</title>
+</head>
+<body>
+    <h1>Event Handling and Delegation Example</h1>
+    <p>Click on any of the buttons to see the event handling and delegation in action. Open the console to see the output.</p>
+
+    <div id="buttonContainer">
+        <button class="myButton">Button 1</button>
+        <button class="myButton">Button 2</button>
+        <button class="myButton">Button 3</button>
+    </div>
+
+    <script>
+        // Event delegation: attaching a single event listener to the container
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        buttonContainer.addEventListener('click', function(event) {
+            // Check if the clicked element is a button with the class 'myButton'
+            if (event.target && event.target.classList.contains('myButton')) {
+                console.log(`You clicked ${event.target.textContent}`);
+            }
+        });
+        // how it is bubbling up the event to the container
+        // adding another event listener to the container to demonstrate event bubbling
+        buttonContainer.addEventListener('click', function(event) {
+            console.log('Event bubbled up to the container');
+        });
+        
+    </script>
+</body>
+</html>

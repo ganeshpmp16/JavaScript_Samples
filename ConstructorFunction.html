@@ -1,0 +1,39 @@
+<!--This file contains a JavaScript example demonstrating constructor functions     -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor Function Example</title>
+</head>
+<body>
+    <h1>Constructor Function Example</h1>
+    <p>Open the console to see the output of the constructor function.</p>
+
+    <script>
+        // Constructor function to create a Person object
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+            this.greet = function() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            };
+        }
+
+        // Creating instances of the Person constructor function
+        const person1 = new Person("Alice", 30);
+        const person2 = new Person("Bob", 25);
+
+        // Accessing properties and calling methods of the instances
+        console.log("Person 1 Name:", person1.name); // Output: Person 1 Name: Alice
+        person1.age = 31; // Updating person1's age
+        
+        console.log("Person 1 Age:", person1.age);   // Output: Person 1 Age: 31
+        person1.greet(); // Output: Hello, my name is Alice and I am 31 years old.
+
+        console.log("Person 2 Name:", person2.name); // Output: Person 2 Name: Bob
+        console.log("Person 2 Age:", person2.age);   // Output: Person 2 Age: 25
+        person2.greet(); // Output: Hello, my name is Bob and I am 25 years old.
+    </script>
+</body>
+</html>
