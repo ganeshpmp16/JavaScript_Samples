@@ -1,0 +1,60 @@
+<!--This is sample demo for onclick()  oninput() onsubmit() events    --> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>HTML Events Demo</h1>
+<!-- on click event example -->
+<button id="myButton" onclick="changeText()">Click Me!</button>
+<div id="displayArea"></div>
+<!--onsubmit() form validation example -->
+    <form onsubmit="return validateForm()">
+        <input type="text" id="name" placeholder="Enter your name" /> 
+        <button type="submit">Submit</button>
+    </form> 
+<script>
+    //basic function to change the text in the display area when the button is clicked  
+    function changeText() {
+        document.getElementById("displayArea").innerHTML = "The button was clicked!";
+    }
+    // form validation function for onsubmit event
+    function validateForm() {
+        var name = document.getElementById("name").value;
+        if (name === "") {
+            alert("Name must be filled out");
+            return false; // Prevent form submission
+        }
+        alert("Form submitted successfully!");
+        return true; // Allow form submission
+    }
+    // oninput event example for an input field
+    var inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.placeholder = "Type something here";
+    inputField.oninput = function() {
+        document.getElementById("displayArea").innerHTML = "You are typing: " + this.value;
+    };
+    document.body.appendChild(inputField);
+    
+    
+</script>

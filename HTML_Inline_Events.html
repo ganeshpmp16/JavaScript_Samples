@@ -1,0 +1,57 @@
+<!--This is a sample HTML file for demonstrating inline event(onclick , onchange) handling in JavaScript    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline Event Handling Sample</title>
+    <style>
+        /* Basic styling for the button and display area */
+        #myButton {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #displayArea {
+            margin-top: 20px;
+            font-size: 18px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inline Event Handling in JavaScript</h1>
+     <!-- on click event example -->
+    <button id="myButton" onclick="changeText()">Click Me!</button>
+    <div id="displayArea"></div>
+<script>
+    //basic function to change the text in the display area when the button is clicked  
+    function changeText() {
+        document.getElementById("displayArea").innerHTML = "The button was clicked!";
+    }
+   
+    // onchange event example for an input field
+    // Create an input field and add an onchange event to it
+    var inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.placeholder = "Type something and press Enter";
+    inputField.onchange = function() {
+        document.getElementById("displayArea").innerHTML = "You entered: " + this.value;
+    };
+    document.body.appendChild(inputField);
+    // onchange  event example for a select dropdown
+    var selectDropdown = document.createElement("select");
+    var option1 = document.createElement("option");
+    option1.value = "Option 1";
+
+    option1.text = "Option 1";
+    var option2 = document.createElement("option");
+    option2.value = "Option 2";
+    option2.text = "Option 2";
+    selectDropdown.appendChild(option1);
+    selectDropdown.appendChild(option2);
+    selectDropdown.onchange = function() {
+        document.getElementById("displayArea").innerHTML = "You selected: " + this.value;
+    };
+</script>
+</body>
+</html>

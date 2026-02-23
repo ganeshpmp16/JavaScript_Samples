@@ -1,0 +1,56 @@
+<!--This file demonstrates the use of local Storage as array of objects in HTML5 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Array Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</html> 
+<body>
+<h1>Local Storage Array Example</h1>
+<p>This page demonstrates how to use local Storage as an array of objects in JavaScript to store and retrieve data.</p>
+<button onclick="saveData()">Save Data</button>
+<button onclick="loadData()">Load Data</button>
+<script>
+    // Function to save an array of objects to localStorage
+    function saveData() {
+        var myArray = [
+            { name: "John Doe", age: 30, city: "New York" },
+            { name: "Jane Smith", age: 25, city: "Los Angeles" },
+            { name: "Mike Johnson", age: 35, city: "Chicago" }
+        ];
+        localStorage.setItem("myArray", JSON.stringify(myArray));
+        document.getElementById("output").innerText = "Array of objects saved to localStorage.";
+    }
+    
+    // Function to load an array of objects from localStorage
+    function loadData() {
+        var storedArray = localStorage.getItem("myArray");
+        if (storedArray) {
+            var parsedArray = JSON.parse(storedArray);
+            document.getElementById("output").innerText = "Retrieved array of objects: " + JSON.stringify(parsedArray);
+        } else {
+            document.getElementById("output").innerText = "No data found in localStorage.";
+        }
+    } 
+</script>
+<div id="output"></div>
+
+</body>
+</html>

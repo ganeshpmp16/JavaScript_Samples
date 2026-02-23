@@ -1,0 +1,35 @@
+<!--This file demonstrates the use of the onchange()   event in HTML forms-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnChange Event Example</title>
+    <style>
+        /* Basic styling for the input field and display area */
+        #myInput {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+        }
+        #displayArea {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>OnChange Event in JavaScript</h1>
+    <button onclick="showMessage()">Click Me</button>;
+    <input type="text" onchange="ValueChanged(this.value)" id="myInput" placeholder="Type something...">
+    <script>
+        // Function to handle the onchange event
+        function ValueChanged(newValue) {
+           alert("The value has changed to: " + newValue);
+        }
+        // Function to show a message when the button is clicked
+        function showMessage() {
+            alert("Button was clicked!");
+        }
+    </script>

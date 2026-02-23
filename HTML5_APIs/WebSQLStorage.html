@@ -1,0 +1,67 @@
+<!--This is a sample HTML file for demonstrating Web SQL Storage in JavaScript    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web SQL Storage Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>Web SQL Storage Demo</h1>
+<p>This page demonstrates the use of the Web SQL Storage API in JavaScript.</p>
+<input type="text" id="dataInput" placeholder="Enter something to store in Web SQL">
+<button onclick="storeInWebSQL()">Store in Web SQL</button>
+<button onclick="displayStoredData()">Display Stored Data</button>
+<div id="output"></div>
+<script>
+    // Function to store data in Web SQL
+    function storeInWebSQL() {
+        var data = document.getElementById("dataInput").value;
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS mytable (id unique, data)');
+            tx.executeSql('INSERT INTO mytable (id, data) VALUES (1, ?)', [data]);
+            tx.executeSql('SELECT * FROM mytable', [], function (tx, results) {
+                var len = results.rows.length, i;
+                var output = "Data stored in Web SQL: ";
+                for (i = 0; i < len; i++) {
+                    output += results.rows.item(i).data + " ";
+                }
+                document.getElementById("output").innerText = output;
+            });
+        });
+    }
+    // Function to display stored data from Web SQL
+    function displayStoredData() {
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM mytable', [], function (tx, results) {
+                var len = results.rows.length, i;
+                var output = "Stored data in Web SQL: ";
+                for (i = 0; i < len; i++) {
+                    output += results.rows.item(i).data + " ";
+                }
+                document.getElementById("output").innerText = output;
+            });
+        });
+    }
+    
+</script>
+</body> 
+</html>

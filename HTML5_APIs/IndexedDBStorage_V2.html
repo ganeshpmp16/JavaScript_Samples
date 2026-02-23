@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IndexedDB Structured Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1>IndexedDB Production-Style Demo</h1>
+
+<input type="text" id="dataInput" placeholder="Enter data">
+<button id="storeBtn">Store Data</button>
+<button id="displayBtn">Display Data</button>
+
+<div id="output"></div>
+
+<script>
+
+    const DB_NAME = "myDatabase";
+    const DB_VERSION = 1;
+    const STORE_NAME = "myObjectStore";
+
+    let db = null;
+
+    // -----------------------------
+    // Open Database (Promise based)
+    // -----------------------------
+    function openDatabase() {
+        return new Promise((resolve, reject) => {
+
+            if (db) {
+                resolve(db);
+                return;
+            }
+
+            const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+            request.onupgradeneeded = function (event) {
+                const database = event.target.result; // This is where we create the object store if it doesn't exist
+
+                if (!database.objectStoreNames.contains(STORE_NAME)) {
+                    database.createObjectStore(STORE_NAME, {
+                        keyPath: "id",
+                        autoIncrement: true
+                    });
+                }
+            };
+            // When the database is successfully opened, we resolve the promise with the database instance
+            // promise means that we can use async/await syntax to handle
+            //  the asynchronous nature of IndexedDB operations in a more readable way.
+            // async/await allows us to write asynchronous code that looks synchronous,
+            //  making it easier to understand and maintain.
+            // async/await is built on top of promises, so we can use it 
+            // to handle the promise returned by openDatabase() in our storeData and displayData functions.
+            // The onsuccess event is triggered when the database is successfully opened, 
+            // and we resolve the promise with the database instance.
+            // asynchronous means that the code execution can continue 
+            // while waiting for the database operation to complete, which is essential for maintaining
+            //  a responsive user interface.
+            request.onsuccess = function (event) {
+                db = event.target.result;
+
+                db.onerror = function (event) {
+                    console.error("Database error:", event.target.error);
+                };
+
+                resolve(db); // resolve the promise with the database instance
+            };
+
+            request.onerror = function (event) {
+                reject("Error opening database: " + event.target.error);
+            };
+
+        });
+    }
+
+    // -----------------------------
+    // Store Data
+    // -----------------------------
+    async function storeData() {
+
+        const value = document.getElementById("dataInput").value;
+
+        if (!value) {
+            alert("Please enter data.");
+            return;
+        }
+
+        try {
+            //await is used to wait for the promise returned by openDatabase() to resolve,
+            //allowing us to get the database instance before proceeding with the transaction.
+            const database = await openDatabase();
+
+            const transaction = database.transaction(STORE_NAME, "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+
+            const request = store.add({ data: value });
+
+            request.onerror = function (event) {
+                console.error("Add failed:", event.target.error);
+            };
+
+            transaction.oncomplete = function () {
+                document.getElementById("output").innerText =
+                    "Data stored successfully: " + value;
+            };
+
+            transaction.onerror = function (event) {
+                console.error("Transaction failed:", event.target.error);
+            };
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    // -----------------------------
+    // Display Data
+    // -----------------------------
+    async function displayData() {
+
+        try {
+            const database = await openDatabase();
+
+            const transaction = database.transaction(STORE_NAME, "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+
+            const request = store.getAll();
+
+            request.onsuccess = function () {
+                const result = request.result;
+
+                if (result.length === 0) {
+                    document.getElementById("output").innerText =
+                        "No records found.";
+                    return;
+                }
+
+                const allData = result.map(item => item.data).join(", ");
+
+                document.getElementById("output").innerText =
+                    "Stored Data: " + allData;
+            };
+
+            request.onerror = function (event) {
+                console.error("Read failed:", event.target.error);
+            };
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    // -----------------------------
+    // Event Listeners
+    // -----------------------------
+    document.getElementById("storeBtn").addEventListener("click", storeData);
+    document.getElementById("displayBtn").addEventListener("click", displayData);
+
+</script>
+
+</body>
+</html>

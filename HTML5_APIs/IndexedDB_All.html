@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Expense Tracker - IndexedDB</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input { margin: 5px; padding: 5px; }
+        button { margin: 5px; padding: 6px 10px; }
+        table { border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+
+<h2>Mini Expense Tracker (IndexedDB)</h2>
+
+<!-- FORM -->
+<input type="text" id="title" placeholder="Expense Title">
+<input type="number" id="amount" placeholder="Amount">
+<input type="date" id="date">
+
+<br>
+
+<button onclick="addExpense()">Add Expense</button>
+<button onclick="viewExpenses()">View Expenses</button>
+
+<h3>Expense List</h3>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="expenseTable"></tbody>
+</table>
+
+<script>
+let db;
+const request = indexedDB.open("ExpenseDB", 1);
+
+/* =========================
+   CREATE TABLE (ObjectStore)
+   ========================= */
+request.onupgradeneeded = function(event) {
+    db = event.target.result;
+
+    // Simulating: CREATE TABLE expenses (...)
+    const objectStore = db.createObjectStore("expenses", {
+        keyPath: "id",
+        autoIncrement: true
+    });
+
+    objectStore.createIndex("title", "title", { unique: false });
+    objectStore.createIndex("amount", "amount", { unique: false });
+    objectStore.createIndex("date", "date", { unique: false });
+
+    console.log("Table Created Successfully");
+};
+
+/* =========================
+   DATABASE OPEN SUCCESS
+   ========================= */
+request.onsuccess = function(event) {
+    db = event.target.result;
+    console.log("Database opened successfully");
+};
+
+/* =========================
+   DATABASE ERROR
+   ========================= */
+request.onerror = function(event) {
+    console.error("Database error:", event.target.error);
+};
+
+/* =========================
+   INSERT (Add Expense)
+   ========================= */
+function addExpense() {
+
+    const title = document.getElementById("title").value;
+    const amount = parseFloat(document.getElementById("amount").value);
+    const date = document.getElementById("date").value;
+
+    if (!title || !amount || !date) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    // Start Transaction
+    const transaction = db.transaction(["expenses"], "readwrite");
+
+    transaction.onerror = function(event) {
+        console.error("Transaction failed:", event.target.error);
+    };
+
+    const store = transaction.objectStore("expenses");
+
+    const expense = {
+        title: title,
+        amount: amount,
+        date: date
+    };
+
+    const request = store.add(expense);
+
+    request.onsuccess = function() {
+        alert("Expense Added Successfully");
+        viewExpenses();
+    };
+
+    request.onerror = function(event) {
+        console.error("Insert error:", event.target.error);
+    };
+}
+
+/* =========================
+   SELECT (View Expenses)
+   ========================= */
+function viewExpenses() {
+
+    const transaction = db.transaction(["expenses"], "readonly");
+    const store = transaction.objectStore("expenses");
+    const request = store.getAll();
+
+    request.onsuccess = function(event) {
+
+        const expenses = event.target.result;
+        const table = document.getElementById("expenseTable");
+        table.innerHTML = "";
+
+        expenses.forEach(exp => {
+            const row = `
+                <tr>
+                    <td>${exp.id}</td>
+                    <td>${exp.title}</td>
+                    <td>${exp.amount}</td>
+                    <td>${exp.date}</td>
+                    <td>
+                        <button onclick="deleteExpense(${exp.id})">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+            table.innerHTML += row;
+        });
+    };
+
+    request.onerror = function(event) {
+        console.error("Select error:", event.target.error);
+    };
+}
+
+/* =========================
+   DELETE Expense
+   ========================= */
+function deleteExpense(id) {
+
+    const transaction = db.transaction(["expenses"], "readwrite");
+
+    transaction.onerror = function(event) {
+        console.error("Transaction delete failed:", event.target.error);
+    };
+
+    const store = transaction.objectStore("expenses");
+    const request = store.delete(id);
+
+    request.onsuccess = function() {
+        alert("Expense Deleted");
+        viewExpenses();
+    };
+
+    request.onerror = function(event) {
+        console.error("Delete error:", event.target.error);
+    };
+}
+
+</script>
+
+</body>
+</html>

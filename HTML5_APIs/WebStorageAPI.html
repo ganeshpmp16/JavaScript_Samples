@@ -1,0 +1,57 @@
+<!--This is a sample HTML file for demonstrating Web Storage API in JavaScript    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage API Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>Web Storage API Demo</h1>
+<p>This page demonstrates the use of the Web Storage API (localStorage and sessionStorage) in JavaScript.</p>
+<!-- Input field to store data in localStorage -->
+<input type="text" id="localStorageInput" placeholder="Enter something to store in localStorage">
+<button onclick="storeInLocalStorage()">Store in localStorage</button>
+<!-- Input field to store data in sessionStorage -->
+<input type="text" id="sessionStorageInput" placeholder="Enter something to store in sessionStorage">
+<button onclick="storeInSessionStorage()">Store in sessionStorage</button>
+<div id="output"></div>
+<script>
+    // Function to store data in localStorage
+    function storeInLocalStorage() {
+        var data = document.getElementById("localStorageInput").value;
+        localStorage.setItem("myLocalData", data);
+        document.getElementById("output").innerText = "Data stored in localStorage: " + data;
+    }
+    
+    // Function to store data in sessionStorage
+    function storeInSessionStorage() {
+        var data = document.getElementById("sessionStorageInput").value;
+        sessionStorage.setItem("mySessionData", data);
+        document.getElementById("output").innerText = "Data stored in sessionStorage: " + data;
+    }   
+    // Optionally, you can also add functions to retrieve and display the stored data
+    function displayStoredData() {
+        var localData = localStorage.getItem("myLocalData");
+        var sessionData = sessionStorage.getItem("mySessionData");
+        document.getElementById("output").innerText = "Stored in localStorage: " + localData + "\nStored in sessionStorage: " + sessionData;
+    }
+</script>
+</body>
+</html>

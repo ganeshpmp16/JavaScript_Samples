@@ -1,0 +1,38 @@
+<!--This is a sample HTML file for demonstrating event handling in JavaScript   --> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Sample</title>
+    <style>
+        /* Basic styling for the button and display area */
+        #myButton {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #displayArea {
+            margin-top: 20px;
+            font-size: 18px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Handling in JavaScript</h1>
+<!--A. Inline Event (basic)-->
+<button id="myButton" onclick="alert('Button was clicked!')">Click Me!</button>
+
+<!--B.AddEventListener implementation-->
+ <button id="btn">Click Me Too!</button>
+<script>
+    // Get reference to the second button
+    const btn = document.getElementById('btn');
+    // Add an event listener to the second button for the 'click' event
+    btn.addEventListener('click', function() {
+        alert('Second button was clicked!');
+    });
+</script>
+</body></html>
+  
+

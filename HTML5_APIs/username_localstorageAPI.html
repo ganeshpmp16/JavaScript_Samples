@@ -1,0 +1,67 @@
+<!--This is a sample HTML file for demonstrating username storage in localStorage API in JavaScript    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Storage in localStorage API Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>Username Storage in localStorage API Demo</h1>
+<p>Enter your username and click the button to store it in localStorage:</p>
+<input type="text" id="username" placeholder="Enter your username">
+<button id="btnSave">Save</button>
+<button id="btnFetch">Fetch Username</button>
+<div id="output"></div>
+<script>
+    // Function to save username in localStorage
+    document.getElementById("btnSave").addEventListener("click", function() {
+        var username = document.getElementById("username").value;
+        if (username) {
+            localStorage.setItem("username", username);
+            document.getElementById("output").innerText = "Username saved in localStorage: " + username;
+        } else {
+            alert("Please enter a username.");
+        }
+    });
+    // Function to fetch and display the stored username from localStorage
+    document.getElementById("btnFetch").addEventListener("click", function() {
+        var storedUsername = localStorage.getItem("username");
+        if (storedUsername) {
+            document.getElementById("output").innerText = "Stored username in localStorage: " + storedUsername;
+        } else {
+            document.getElementById("output").innerText = "No username found in localStorage.";
+        }
+    });
+
+    /* Optionally, you can also add a function to retrieve and display the stored username
+    function displayStoredUsername() {
+        var storedUsername = localStorage.getItem("username");
+        if (storedUsername) {
+            document.getElementById("output").innerText = "Stored username in localStorage: " + storedUsername;
+        } else {
+            document.getElementById("output").innerText = "No username found in localStorage.";
+        }
+    }
+    
+    // Call the function to display the stored username when the page loads
+    window.onload = displayStoredUsername;*/
+</script>
+</body>
+</html>

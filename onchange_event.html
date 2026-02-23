@@ -1,0 +1,45 @@
+<!--onchange() event demo       -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>onchange Event Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h2>onchange Event Example</h2>
+
+<p>Type something in the textbox and click outside the field:</p>
+
+<input type="text" id="username" onchange="handleChange()">
+
+<p id="output"></p>
+
+<script>
+
+function handleChange() {
+    // Step 1: Get input value
+    let value = document.getElementById("username").value;
+
+    // Step 2: Display value dynamically
+    document.getElementById("output").innerText =
+        "You entered: " + value;
+}
+</script>
+</body>
+</html>

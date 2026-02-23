@@ -1,0 +1,43 @@
+<!--This is a sample HTML file for demonstrating event handling in JavaScript-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Sample</title>
+    <style>
+        /* Basic styling for the button and display area */
+        #myButton {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #displayArea {
+            margin-top: 20px;
+            font-size: 18px;
+            color: blue;
+        }
+    </style>
+</head><body>
+    <h1>Event Handling in JavaScript</h1>
+    <button id="myButton">Click Me!</button>
+    <div id="displayArea"></div>
+    <script>
+        // Get references to the button and display area
+        const button = document.getElementById('myButton');
+        const displayArea = document.getElementById('displayArea');
+
+        // Add an event listener to the button for the 'click' event
+        button.addEventListener('click', function() {
+            // Update the display area with a message when the button is clicked
+            displayArea.textContent = 'Button was clicked!';
+        });
+        // Add an event listener for mouseover event     
+           button.addEventListener('mouseover', function() {
+            displayArea.textContent = 'Mouse is over the button!';
+        });
+        // Add an event listener for mouseout event
+        button.addEventListener('mouseout', function() {
+            displayArea.textContent = 'Mouse is no longer over the button!';
+        });
+    </script>
+</body></html>

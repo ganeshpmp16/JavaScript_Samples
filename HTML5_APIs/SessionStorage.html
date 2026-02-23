@@ -1,0 +1,52 @@
+<!--This file demonstrates the use of sessionStorage in HTML5-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Storage Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>Session Storage Example</h1>
+<p>This page demonstrates how to use sessionStorage in JavaScript to store and retrieve data.</p
+<!-- Input field to store data in sessionStorage -->
+<input type="text" id="inputField" placeholder="Enter some text">
+<button onclick="saveData()">Save Data</button>
+<button onclick="loadData()">Load Data</button>
+<div id="output"></div>
+<script>
+    // Function to save data to sessionStorage
+    function saveData() {
+        var data = document.getElementById("inputField").value;
+        sessionStorage.setItem("mySessionData", data);
+        document.getElementById("output").innerText = "Data saved to sessionStorage: " + data;
+    }
+    
+    // Function to load data from sessionStorage
+    function loadData() {
+        var storedData = sessionStorage.getItem("mySessionData");
+        if (storedData) {
+            document.getElementById("output").innerText = "Data loaded from sessionStorage: " + storedData;
+        } else {
+            document.getElementById("output").innerText = "No data found in sessionStorage.";
+        }
+    }
+</script>
+</body>
+</html>

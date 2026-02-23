@@ -1,0 +1,50 @@
+<!--This is a sample HTML file for demonstrating mouse hover events in JavaScript    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Hover Event Demo</title>
+    <style>
+        /* Basic styling for the hover area and display area */
+        #hoverArea {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 100px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        #displayArea {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mouse Hover Event Demo</h1>
+    <div id="hoverArea">Hover over me!</div>
+    <div id="displayArea"></div>
+    <button id="myButton" onmouseover="changeButtonText('Button hovered!')" onmouseout="changeButtonText('Hover over the button!')">Hover over the button!</button>
+<script>
+   function changeButtonText(text) {
+        document.getElementById("myButton").innerText = text;
+    }   
+    
+   // Get the hover area element
+    var hoverArea = document.getElementById("hoverArea");
+    
+    // Add mouseover event listener to change text when hovered
+    hoverArea.addEventListener("mouseover", function() {
+        document.getElementById("displayArea").innerText = "Mouse is hovering over the area!";
+    });
+    
+    // Add mouseout event listener to reset text when not hovered
+    hoverArea.addEventListener("mouseout", function() {
+        document.getElementById("displayArea").innerText = "";
+    });
+</script>
+</body>
+</html>

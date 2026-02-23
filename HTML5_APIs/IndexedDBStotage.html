@@ -1,0 +1,75 @@
+<!--This is a sample HTML file for demonstrating IndexedDB Storage in JavaScript    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB Storage Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>IndexedDB Storage Demo</h1>
+<p>This page demonstrates the use of the IndexedDB Storage API in JavaScript.</p>
+<input type="text" id="dataInput" placeholder="Enter something to store in IndexedDB">
+<button onclick="storeInIndexedDB()">Store in IndexedDB</button>
+<button onclick="displayStoredData()">Display Stored Data</button>
+<div id="output"></div>
+<script>
+    // Function to store data in IndexedDB
+    function storeInIndexedDB() {
+        var data = document.getElementById("dataInput").value;
+        var request = indexedDB.open("myDatabase", 1);
+        // Create object store if it doesn't exist or upgrade the database if needed
+        request.onupgradeneeded = function(event) {
+            var db = event.target.result;
+            db.createObjectStore("myObjectStore", { keyPath: "id", autoIncrement: true });
+        };
+        request.onsuccess = function(event) {
+            var db = event.target.result;
+            var transaction = db.transaction(["myObjectStore"], "readwrite");
+            var objectStore = transaction.objectStore("myObjectStore");
+            objectStore.add({ data: data });
+            transaction.oncomplete = function() {
+                document.getElementById("output").innerText = "Data stored in IndexedDB: " + data;
+            };
+        };
+        request.onerror = function(event) {
+            console.error("Error opening IndexedDB:", event.target.error);
+        };
+    }
+    
+    // Function to display stored data from IndexedDB
+    function displayStoredData() {
+        var request = indexedDB.open("myDatabase", 1);
+        request.onsuccess = function(event) {
+            var db = event.target.result;
+            var transaction = db.transaction(["myObjectStore"], "readonly");
+            var objectStore = transaction.objectStore("myObjectStore");
+            var getAllRequest = objectStore.getAll();
+            getAllRequest.onsuccess = function() {
+                var allData = getAllRequest.result.map(item => item.data).join(", ");
+                document.getElementById("output").innerText = "Stored data in IndexedDB: " + allData;
+            };
+        };
+        request.onerror = function(event) {
+            console.error("Error opening IndexedDB:", event.target.error);
+        };
+    }   
+</script>
+</body>
+</html>
