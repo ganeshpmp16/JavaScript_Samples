@@ -1,0 +1,41 @@
+<!-- Async/Await Sample -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async/Await Sample</title>
+</head>
+<body>
+    <h1>Async/Await Sample</h1>
+    <button id="fetchDataBtn">Fetch Data</button>
+    <div id="result"></div>
+
+    <script>
+        // Simulate an asynchronous operation (e.g., fetching data from an API)
+        function fetchData() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve("Data fetched successfully!");
+                }, 2000); // Simulate a 2-second delay
+            });
+        }
+
+        // Async function to handle the button click
+        async function handleFetchData() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = "Fetching data...";
+
+            try {
+                const data = await fetchData(); // Wait for the fetchData promise to resolve
+                resultDiv.textContent = data; // Display the fetched data
+            } catch (error) {
+                resultDiv.textContent = "An error occurred: " + error.message; // Handle any errors
+            }
+        }   
+
+        // Add event listener to the button
+        document.getElementById('fetchDataBtn').addEventListener('click', handleFetchData);
+    </script>
+</body>
+</html>

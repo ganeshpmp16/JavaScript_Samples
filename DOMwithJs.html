@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation with JavaScript</title>
+    <script>
+        // Wait for the DOM to fully load
+        // This ensures that the elements we want to manipulate are available
+        // We use the DOMContentLoaded event to run our code after the HTML is fully loaded
+        // This is a common pattern to ensure that our JavaScript code runs at the right time
+        // We select the button and the div using their IDs
+        // We add a click event listener to the button, which will execute a function 
+        // when the button is clicked
+        //next, we change the text content of the div and its background color
+        //  when the button is clicked
+        document.addEventListener('DOMContentLoaded', function() {
+            //add event listener to the button to change the text and background color 
+            // of the div when clicked.
+            // AddeventListener is a method that attaches an event handler 
+            // to the specified element without overwriting existing event handlers. 
+            // In this case, we are attaching a click event listener to the button. 
+            // When the button is clicked, the function we defined will be executed,
+            //  which changes the text content of the div and its background color.
+            // Select the button and the div
+            const button = document.getElementById('myButton');
+            const contentDiv = document.getElementById('content');
+
+            // Add a click event listener to the button
+            button.addEventListener('click', function() {
+                // Change the text of the div when the button is clicked
+                contentDiv.textContent = 'Button was clicked!';
+                // Change the background color of the div
+                contentDiv.style.backgroundColor = 'lightblue';
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="myButton">Click Me!</button>
+    <div id="content">Initial content</div>
+</body> 
+</html>

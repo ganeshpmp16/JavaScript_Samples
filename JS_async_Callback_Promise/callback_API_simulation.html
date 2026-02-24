@@ -1,0 +1,32 @@
+<!-- Callback API Simulation Sample -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback API Simulation Sample</title>
+</head>
+<body>
+    <h1>Callback API Simulation Sample</h1>
+    <script>
+        // Simulating an API call with a callback
+        function fetchData(callback) {
+            console.log("Fetching data...");
+            setTimeout(function() {
+                const data = { id: 1, name: "John Doe" };
+                console.log("Data fetched");
+                callback(data);
+            },10000); // Simulating a delay of 2 seconds
+        }
+
+        // Callback function to handle the fetched data
+        function handleData(data) {
+            console.log("Handling data:", data);
+        }
+
+        // Calling the fetchData function with the handleData callback
+        fetchData(handleData);
+    </script>
+</body>
+</html>

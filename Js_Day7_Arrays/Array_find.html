@@ -1,0 +1,27 @@
+<!-- Array Find Method Sample   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Find Method Sample</title>
+</head>
+<body>
+    <h1>Array Find Method Sample</h1>
+    <script>
+        // Array Creation
+        let numbers = [1, 2, 3, 4, 5];
+
+        // Using find to get the first even number in the array
+        let firstEven = numbers.find(function(number) {
+            return number % 2 === 0;
+        });
+        console.log(firstEven); // Output: 2
+
+        // Using find with an arrow function to get the first odd number
+        let firstOdd = numbers.find(number => number % 2 !== 0);
+        console.log(firstOdd); // Output: 1
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- JavaScript Callback Functions Sample   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Callback Functions Sample</title>
+</head>
+<body>
+    <h1>JavaScript Callback Functions Sample</h1>
+    <script>
+        // A simple function that takes a callback
+        function greet(name, callback) {
+            console.log("Hello, " + name + "!");
+            callback();
+        }
+
+        // A callback function to be passed to greet
+        function Welcome() {
+            console.log("Welcome to our website!");
+        }
+
+        // Calling the greet function with a name and the callback
+        greet("Alice", Welcome);
+    </script>
+</body>
+</html>

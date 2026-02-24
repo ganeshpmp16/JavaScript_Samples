@@ -1,0 +1,27 @@
+<!-- Array Transform Map Method Sample -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Transform Map Method Sample</title>
+</head>
+<body>
+    <h1>Array Transform Map Method Sample</h1>
+    <script>
+        // Array Creation
+        let numbers = [1, 2, 3, 4, 5];
+
+        // Using map to create a new array with each number squared
+        let squaredNumbers = numbers.map(function(number) {
+            return number * number;
+        });
+        console.log(squaredNumbers); // Output: [1, 4, 9, 16, 25]
+
+        // Using map with an arrow function
+        let cubedNumbers = numbers.map(number => number * number * number);
+        console.log(cubedNumbers); // Output: [1, 8, 27, 64, 125]
+    </script>
+</body>
+</html>

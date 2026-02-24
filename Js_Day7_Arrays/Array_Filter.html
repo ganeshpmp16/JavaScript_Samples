@@ -1,0 +1,27 @@
+<!-- Array Filter Method Sample     -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Filter Method Sample</title>
+</head>
+<body>
+    <h1>Array Filter Method Sample</h1>
+    <script>
+        // Array Creation
+        let numbers = [1, 2, 3, 4, 5];
+
+        // Using filter to create a new array with only even numbers
+        let evenNumbers = numbers.filter(function(number) {
+            return number % 2 === 0;
+        });
+        console.log(evenNumbers); // Output: [2, 4]
+
+        // Using filter with an arrow function to get odd numbers
+        let oddNumbers = numbers.filter(number => number % 2 !== 0);
+        console.log(oddNumbers); // Output: [1, 3, 5]
+    </script>
+</body>
+</html>

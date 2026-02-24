@@ -1,0 +1,32 @@
+<!--This is a sample HTML file for demonstrating DOMContentLoaded event in JavaScript    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMContentLoaded Event Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>DOMContentLoaded Event Demo</h1>
+<p>This page demonstrates the use of the DOMContentLoaded event in JavaScript.</p>
+<div id="output"></div>
+<script>
+    // Listen for the DOMContentLoaded event
+    document.addEventListener("DOMContentLoaded", function() {
+        // This code will run once the DOM is fully loaded
+        document.getElementById("output").innerText = "The DOM is fully loaded and parsed!";
+    });
+</script>
+</body>
+</html>
