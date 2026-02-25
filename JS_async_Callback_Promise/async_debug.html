@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Async Await Debug Demo</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { padding: 10px; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>Async/Await Debugging Example</h2>
+<button onclick="startProcess()">Start Async Process</button>
+
+<div id="result"></div>
+
+<script>
+
+// Simulated API call (returns after 3 seconds)
+function fakeApi() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(200);
+        }, 3000);
+    });
+}
+
+async function startProcess() {
+
+    console.log("Process Started");
+    debugger; // Step into the async function
+
+    let baseValue = 100;
+
+    // 🔹 DO NOT place breakpoint here
+    let apiResult = await fakeApi();
+
+    // ✅ PLACE BREAKPOINT HERE
+    // This line runs ONLY after promise resolves
+    debugger;
+    let finalValue = baseValue + apiResult;
+
+    console.log("Final Value:", finalValue);
+    document.getElementById("result").innerText =
+        "Final Value: " + finalValue;
+}
+
+</script>
+
+</body>
+</html>

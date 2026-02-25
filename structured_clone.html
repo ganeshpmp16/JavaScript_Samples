@@ -1,0 +1,35 @@
+<!--This file demonstrates structured cloning in JavaScript-->
+<!-- deep copy means creating a new object that is completely independent of the original object -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structured Cloning Example</title>
+</head>
+<body>
+    <h1>Structured Cloning Example</h1>
+    <p>Check the console for output demonstrating structured cloning.</p>
+    
+    <script>
+        // Example object with nested properties
+        const original = {
+            name: 'Alice',
+            address: {
+                city: 'Wonderland',
+                zip: '12345'
+            }
+        };
+    
+        // Using structured cloning to create a deep copy of the original object
+        const cloned = structuredClone(original);
+    
+        // Modifying the cloned object to demonstrate that it is a deep copy
+        cloned.name = 'Bob';
+        cloned.address.city = 'Nowhere';
+    
+        console.log('Original:', original); // Output: { name: 'Alice', address: { city: 'Wonderland', zip: '12345' } }
+        console.log('Cloned:', cloned); // Output: { name: 'Bob', address: { city: 'Nowhere', zip: '12345' } }
+    </script>
+</body>
+</html>

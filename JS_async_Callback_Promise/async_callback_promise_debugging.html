@@ -1,0 +1,104 @@
+<!-- this sample demonstrates debugging async code in the browser -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Async Debugging Demo</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { margin: 10px 0; padding: 8px 12px; }
+        #output { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>Async Debugging Demo</h2>
+
+<button onclick="runTimeout()">Run setTimeout Example</button>
+<button onclick="runPromise()">Run Promise Example</button>
+<button onclick="runAsyncAwait()">Run Async/Await Example</button>
+
+<div id="output"></div>
+
+<script>
+
+let counter = 0;
+
+function log(message) {
+    document.getElementById("output").innerText = message;
+}
+
+/* ============================= */
+/* 1️⃣ setTimeout Example        */
+/* ============================= */
+function runTimeout() {
+
+    counter = 5;
+    console.log("Timer started");
+
+    setTimeout(function () {
+
+        // ✅ PLACE BREAKPOINT HERE
+        counter += 10;
+        console.log("Timeout Executed");
+        log("Timeout Result: " + counter);
+
+    }, 2000);
+
+}
+
+
+/* ============================= */
+/* 2️⃣ Promise Example           */
+/* ============================= */
+function runPromise() {
+
+    counter = 20;
+
+    let promise = new Promise(function(resolve, reject) {
+
+        setTimeout(function() {
+            resolve(counter + 30);
+        }, 2000);
+
+    });
+
+    promise.then(function(result) {
+
+        // ✅ PLACE BREAKPOINT HERE
+        console.log("Promise Resolved");
+        log("Promise Result: " + result);
+
+    });
+
+}
+
+
+/* ============================= */
+/* 3️⃣ Async / Await Example     */
+/* ============================= */
+
+function fakeApiCall() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(100);
+        }, 2000);
+    });
+}
+
+async function runAsyncAwait() {
+
+    counter = 50;
+
+    let value = await fakeApiCall();
+
+    // ✅ PLACE BREAKPOINT HERE
+    counter += value;
+    console.log("Async/Await Executed");
+    log("Async/Await Result: " + counter);
+
+}
+
+</script>
+
+</body>
+</html>

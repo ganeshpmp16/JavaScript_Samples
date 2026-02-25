@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Async/Await Non-blocking Demo</title>
+</head>
+<body>
+<h1>Async/Await Non-blocking Demo</h1>
+<script>  
+async function getUserData() {
+  console.log("2 - Before await");
+  const user = await fetchUser(1);  // pauses HERE
+  console.log("4 - After await");   // resumes after ~600ms
+}
+
+console.log("1 - Start");
+getUserData();                        // async function is called
+console.log("3 - This runs immediately!");  // doesn't wait for getUserData
+
+// Output:
+// 1 - Start
+// 2 - Before await
+// 3 - This runs immediately!   ← runs while await is waiting
+// 4 - After await              ← runs after 600ms
+
+function fetchUser(id) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({ id, name: "Alice" });
+    }, 600); // Simulate network delay
+  });
+}
+</script>
+</body>
+<!--What's happening step by step
+Line console.log("1 - Start") runs normally.
+getUserData() is called, it enters the function and prints "2 - Before await".
+await fetchUser(1) is hit — JavaScript says "okay, I'll wait for this, but I won't sit idle." It suspends getUserData and goes back to the call stack.
+console.log("3 - This runs immediately!") runs right away — it doesn't wait at all.
+After ~600ms, fetchUser resolves, and JavaScript comes back to resume getUserData from where it left off — printing "4 - After await".
+
+The simple mental model
+Think of it like ordering food at a restaurant:
+
+You (the program) place an order (call fetchUser) — that's the async task.
+Instead of standing at the counter frozen, waiting — you go sit down and do other things (other code runs).
+When the food is ready, the waiter calls you (Promise resolves) and you continue eating (function resumes after await).
+
+So await never freezes the whole program — it only pauses that specific async function, letting everything else keep <moving-->
+
+</html>

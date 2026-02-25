@@ -1,0 +1,38 @@
+<!--This file demonstrates shallow copying in JavaScript-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shallow Copy Example</title>
+</head>
+<body>
+    <h1>Shallow Copy Example</h1>
+    <p>Check the console for output demonstrating shallow copying.</p>
+    
+    <script>
+        // Original object
+        const original = {
+            name: 'Alice',
+            age: 30,
+            address: {
+                city: 'Wonderland',
+                zip: '12345'
+            }
+        };
+    
+        // Shallow copy using Object.assign
+        // object.assign creates a new object and copies the properties of the original object to it.
+        //  However, if the original object contains nested objects, only the reference to the nested object is copied,
+        //  not the actual nested object itself.
+        //   This means that changes to the nested object in the shallow copy will affect the original object.
+        const shallowCopy = Object.assign({}, original);
+    
+        // Modifying the nested object in the shallow copy
+        shallowCopy.address.city = 'New York';
+    
+        console.log('Original:', original); // Output: Original: { name: 'Alice', age: 30, address: { city: 'New York', zip: '12345' } }
+        console.log('Shallow Copy:', shallowCopy); // Output: Shallow Copy: { name: 'Alice', age: 30, address: { city: 'New York', zip: '12345' } }
+    </script>
+</body>
+</html>

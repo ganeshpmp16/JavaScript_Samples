@@ -1,0 +1,30 @@
+<!--This file demonstrates optional chaining in JavaScript-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optional Chaining Example</title>
+</head>
+<body>
+  <h1>Optional Chaining Example</h1>
+  <p>Check the console for output demonstrating optional chaining.</p>
+
+  <script>
+    // Example object with nested properties
+    const user = {
+      name: 'Alice',
+      address: {
+        city: 'Wonderland',
+        zip: '12345'
+      }
+    };
+
+    // Using optional chaining to safely access nested properties
+    console.log(user?.name); // Output: Alice
+    console.log(user?.address?.city); // Output: Wonderland
+    console.log(user?.address?.street); // Output: undefined (no error)
+    console.log(user?.contact?.email); // Output: undefined (no error)
+  </script> 
+</body>
+</html>

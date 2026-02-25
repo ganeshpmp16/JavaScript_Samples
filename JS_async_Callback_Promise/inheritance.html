@@ -1,0 +1,44 @@
+<!--This file demonstrates inheritance in JavaScript using ES6 classes and extends keyword-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Inheritance Example</title>
+</head><body>
+    <h1>JavaScript Inheritance Example</h1>
+    <script>
+        // Base class (Parent)
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+
+            speak() {
+                console.log(`${this.name} makes a sound.`);
+            }
+        }
+
+        // Derived class (Child) that inherits from Animal
+        class Dog extends Animal {
+            constructor(name, breed) {
+                super(name); // Call the parent class constructor
+                this.breed = breed;
+            }
+
+            speak() {
+                console.log(`${this.name} barks.`);
+            }
+
+            getInfo() {
+                console.log(`${this.name} is a ${this.breed}.`);
+            }
+        }
+
+        // Create an instance of Dog
+        const myDog = new Dog("Buddy", "Golden Retriever");
+        myDog.speak(); // Output: Buddy barks.
+        myDog.getInfo(); // Output: Buddy is a Golden Retriever.
+    </script>
+</body>
+</html>

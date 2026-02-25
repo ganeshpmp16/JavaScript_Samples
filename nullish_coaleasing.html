@@ -1,0 +1,25 @@
+<!--This file demonstrates nullish coalescing in JavaScript-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nullish Coalescing Example</title>
+</head>
+<body>
+    <h1>Nullish Coalescing Example</h1>
+    <p>Check the console for output demonstrating nullish coalescing.</p>
+    
+    <script>
+        // Example variables
+        const name = null;
+        const age = undefined;
+        const city = 'New York';
+    
+        // Using nullish coalescing to provide default values
+        console.log(name ?? 'Default Name'); // Output: Default Name
+        console.log(age ?? 30); // Output: 30
+        console.log(city ?? 'Default City'); // Output: New York
+    </script>
+</body> 
+</html>
