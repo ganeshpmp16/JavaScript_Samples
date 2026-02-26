@@ -1,0 +1,100 @@
+<!--This file demonstrates event delegation in JavaScript for a to-do list application-->
+<!--Dynamic To-Do List Scenario: A productivity application requires an interactive 
+To-Do list where users can add, delete, and mark tasks as complete without refreshing the page.
+ 📌 Requirements • Add new tasks dynamically. • Delete tasks on button click. • Mark tasks as completed. • 
+ Use event delegation for better performance. 
+ 🛠️ Technical Constraints • Must use DOM manipulation. • Event delegation required.
+  • Code should follow modular structure. Expectations: • 
+  Fully functional interactive UI. • Organized and reusable functions.
+   🎯 Learning Outcome • Advanced DOM event handling. 
+   • Event delegation concept. 
+   • Understanding role of libraries in speeding up development.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List with Event Delegation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #todo-form {
+            margin-bottom: 20px;
+        }
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <form id="todo-form">
+        <input type="text" id="todo-input" placeholder="Add a new task" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <ul id="todo-list"></ul>
+
+    <script>
+        // Get references to DOM elements
+        const todoForm = document.getElementById('todo-form');
+        const todoInput = document.getElementById('todo-input');
+        const todoList = document.getElementById('todo-list');
+
+        // Function to create a new to-do item
+        function createTodoItem(task) {
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            li.innerHTML = `
+                <span>${task}</span>
+                <button class="delete-btn">Delete</button>
+            `;
+            return li;
+        }
+
+        // Event listener for adding a new task
+        todoForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const task = todoInput.value.trim();
+            if (task) {
+                const todoItem = createTodoItem(task);
+                todoList.appendChild(todoItem);
+                todoInput.value = '';
+            }
+        });
+
+        // Event delegation for delete and complete actions
+        todoList.addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-btn')) {
+                // Delete the task
+                const itemToDelete = event.target.parentElement;
+                todoList.removeChild(itemToDelete);
+            } else if (event.target.tagName === 'SPAN') { // we check if the clicked element is a span (the task text)
+                // Toggle completed state
+                event.target.classList.toggle('completed');
+            }
+        });
+    </script>
+</body>
+</html>
+

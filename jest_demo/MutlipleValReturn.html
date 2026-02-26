@@ -1,0 +1,34 @@
+<!--This file demonstrates multiple value returns in JavaScript     -->
+<!DOCTYPE html>
+<head>
+    <title>Multiple Value Return Demo</title>
+</head>
+<body>
+        <h1>Multiple Value Return Demo</h1>
+        <p id="output"></p>
+        <script>
+            function calculate(a, b){
+                let sum = a + b;
+                let difference = a - b;
+                let product = a * b;
+                let quotient = a / b;
+                //return [sum, difference, product, quotient]; // returning multiple values as an array
+                return sum, difference, product, quotient; // returning multiple values as an object
+            
+            }
+            let results = calculate(10, 5);
+            console.log(results); //undefined because only the last value is returned
+
+            /*console.log("Sum: " + results[0]);
+            console.log("Difference: " + results[1]);
+            console.log("Product: " + results[2]);
+            console.log("Quotient: " + results[3]);*/
+            /*// fumctiion return mutliples values using an array destructuring
+            let [sum, difference, product, quotient] = calculate(20, 4);
+            console.log("Sum: " + sum);
+            console.log("Difference: " + difference);
+            console.log("Product: " + product);
+            console.log("Quotient: " + quotient);*/
+        </script>
+    </body>
+</html>

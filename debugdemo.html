@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debugging Demo</title>
+</head>
+<body>
+
+<h2>Debug Example</h2>
+<button id="btn">Calculate</button>
+
+<script>
+function calculateTotal(price, quantity) {
+    let total = price * quantity;
+    let discount = 10;
+    total = total - discount;
+    return total;
+}
+
+document.getElementById("btn").addEventListener("click", function() {
+    let result = calculateTotal(100, 2);
+    console.log("Final Total:", result);
+});
+</script>
+
+</body>
+</html>
